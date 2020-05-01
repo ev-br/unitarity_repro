@@ -1,4 +1,74 @@
 
+Unitary Fermi gas provides a curious case of a strongly-correlated many-body
+quantum system where interactions are strong, but all properties of the gas are
+interaction-independent. This is simply because (assuming s-wave scattering)
+interparticle interactions are described by the so-called scattering length, 
+and unitarity means that the scattering length is infinite. In this regime, all
+information on the details of interactions drops out of all expressions which 
+describe physical properties of the gas. From a theoretical point of view, the unitary regime controls
+the crossover between Bardeen-Cooper-Schrieffer superconductor (BCS) and a Bose
+gas of tight molecules (BEC). \cite{Eagles:1969, Legett:1980}. 
+This way, the unitary gas model relates
+to a wide range of physical systems, from lab-produced clouds of ultracold gases at
+sub-microkelvin temperatures in magnetic and/or optical traps, to inner crusts of
+neutron stars.
+
+\subsubsection{Overview of the computational procedure}
+
+The main computational workhorse of the study \cite{PRL:2006, NJP:2006} is a
+Monte Carlo (MC) sampling in a space of (partially resummed) Feynman diagrams. 
+(for a review see e.g. \cite{Gull:2011} and references therein). From the
+practical point of view this is a Monte Carlo simulation where each elementary
+move involves rank-1 updates of certain matrices with sizes of the order of up to
+ a few thousand.
+
+Extracting physical results from MC data is a three-stage process. First step is
+a series of simulations of finite-size Hubbard clusters with varying temperature
+and cluster size, at an approximately fixed value of the filling fraction of the lattice. 
+
+Second, these finite-size data are used for extracting the thermodynamic limit behavior
+(i.e., the extrapolation to the inifinite system size) \emph{at a given filling fraction}.
+
+Third, simulations are repeated for a series of filling fractions, and an
+extrapolation is made towards the zero filling fraction (which corresponds to 
+the continuum limit of the lattice model).
+
+The computational complexity of a single MC simulation is, strictly speaking,
+only polynomial: $O(N^3)$ for producing a single independent MC sample. Here $N$ is
+proportional to the number of particles in a finite-size system, and the extrapolation
+is done towards the $N\to\infty$ limit. In practice, simulations were performed
+for up to several hundered particles which was enough to extract the thermodynamic limit.
+The total simulations in 2006 took several million CPU hours on a vector Cray X1 machine.
+Due to the nature of the computations (the bottleneck being
+\texttt{BLAS} level 2  outer products , \texttt{dger}), vector architecture was
+extremely beneficial for larger system sizes where the conventional cache-based
+CPUs choked out due to the cache size effects.
+
+
+\subsubsection{Setting up the reproduction exercise}
+
+Redoing the full computation, all three stages of it, is difficult to justify
+in both human time and usage of computing resource. Therefore, I resorted to reproducing a
+single set of steps 1 and 2 above, i.e. reproducing extraction of thermodynamic
+limit behavior at a single value of the filling fraction. Specifically, the scope of the exercise
+is set to reproduce Fig.\ 2 of Ref.\ \cite{PRL:2006}, which is meant to display a ``typical''
+process. 
+ 
+The first step is to find the code. I happen to have a backup.
+There is a folder named \texttt{code} with some 30 versions,
+consistently named in a pattern \texttt{mon-date}. (Source control? Never
+heard of him.) Sadly, the year did not make it into the naming scheme, and the
+development was spread over at least one New Year. 
+Various files have helpful ``notes-to-self'' type comments
+about subtle algorithmic  tweaks and bugs, fixed or found. I am sure these
+comments were very helpful back in 2006. 
+One day I am going to use this as an intro slide for the
+``source control considered a must'' undergraduate research skills class.
+
+\cite{MCWA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Three years, we launched ReScience, a new scientific journal aimed at publishing the
 replication of existing computational research. Since ReScience published its first
 article\supercite{Topalidou:2015}, things have been
