@@ -31,21 +31,23 @@ keywords: rescience c, Fortran, 10-year-challenge
 # Software Heritage.
 #   see https://guides.github.com/activities/citable-code/
 code:
-  - url: https://github.com/rescience-c/template
+  - url: https://github.com/ev-br/10yr_repro_challenge_35/releases/tag/v1.1
   - doi: 
   - swh: 
 
 # Data URL and DOI (optional if no data)
 data:
-  - url:
+  - url: https://github.com/ev-br/10yr_repro_challenge_35/releases/tag/v1.1
   - doi:
 
 # Information about the original article that has been replicated
 replication:
- - cite: # Full textual citation
- - bib:  # Bibtex key (if any) in your bibliography file
- - url:  # URL to the PDF, try to link to a non-paywall version
- - doi:  # Regular digital object identifier
+ - cite: E. Burovski, B. Svistunov, N. Prokof’ev, and M. Troyer, 
+         ``Critical Temperature and Thermodynamics of Attractive 
+         Fermions at Unitarity'', Physical Review Letters 96, 160402 (2006). # Full textual citation
+ - bib:  PRL:2006  # Bibtex key (if any) in your bibliography file
+ - url:  https://arxiv.org/abs/cond-mat/0602224  # URL to the PDF, try to link to a non-paywall version
+ - doi:  10.1103/PhysRevLett.96.160402  # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
 abstract: "This article reports on a successful exercise in a partial reproduction of a
