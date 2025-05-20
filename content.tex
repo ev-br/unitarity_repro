@@ -41,7 +41,7 @@ is done towards the $N\to\infty$ limit. In practice, several hundred particles a
 enough to extract the thermodynamic limit.
 The total simulations in 2006 took several million CPU hours on a vector Cray X1 machine.
 Due to the nature of the computations (the bottleneck being
-\texttt{BLAS} level 2  outer products , \texttt{dger}), vector architecture was
+\texttt{BLAS} level 2  outer products , \texttt{dger}), the vector architecture was
 extremely beneficial for larger system sizes where the performance of the 
 conventional cache-based CPUs is limited by the cache size effects.
 
@@ -52,7 +52,7 @@ a longer, detailed paper, Ref.\ \cite{NJP:2006}.
 I managed to find a backup on an old hard drive. In this archive, 
 there is a folder named \texttt{code} with some 30 versions,
 consistently named in a pattern \texttt{mon-date}. (Source control? Never
-heard of him.) Sadly, the year did not make it into the naming scheme, and the
+heard of it.) Sadly, the year did not make it into the naming scheme, and the
 development was spread over at least one New Year. 
 Various files have helpful ``notes-to-self'' type comments
 about subtle algorithmic  tweaks and bugs, fixed or found. I am sure these
@@ -114,7 +114,7 @@ Essentially, backwards compatibility is not a concern here.
 
 \subsubsection{Using the code}
 
-Now that the code compiles, next step is to figure out the input and output
+Now that the code compiles, the next step is to figure out the input and output
 formats. The input is in a text file, the format is reasonably well documented
 in \cite{MCWA}, and the meaning of most parameters can be traced using the 
 original paper \cite{NJP:2006}. The outputs are completely undocumented, so the
@@ -144,7 +144,7 @@ Typical runs involve 4 to 32 independent processes for each set of physical
 parameters which only differ in the value of the random seed. Running these
 processes on a computing cluster is done through a batch queueing system
 (SLURM or simular). Batch queueing scripts are fairly standard, and need to be
-tailored to specific configuration of each computing cluster.
+tailored to the specific configuration of each computing cluster.
 
 Containerization (via Docker or Singularity etc) seems fashionable these days
 but I decided against it since this exercise does not pose a problem containers
@@ -160,7 +160,7 @@ autocorrelation times grow large.
 First several runs were producing complete bogus
 because these instrumental parameters were set in \cite{MCWA} for a toy example,
 and were not suitable for production runs (meaning: they would have still
-produce correct results --- in the infinite time limit only). 
+have produced correct results --- in the infinite time limit only). 
 Tuning these parameters is a trial and error procedure, and luckily rather coarse
 tuning to reasonable values is sufficient. 
 
@@ -172,9 +172,9 @@ the next replication in ten more years):
 too close to unity.
 
 \item The ratio of time the simulation spends in the Green function sector and
-in the Z sector must not be too small or too large.
+in the Z sector must be neither too small nor too large.
 
-\item The distribution of the diagram orders should be reasonably gaussian-shaped,
+\item The distribution of the diagram orders should be reasonably Gaussian-shaped,
 as promised by the Central Limit Theorem (see Fig.\ \ref{fig:nmnm}).
 Multiple peaks or broad shoulders signal the lack of convergence. If these are seen,
 one likely needs to throw away the MC statistics and restart from a checkpointed
@@ -199,11 +199,11 @@ for discussion.
 
 \subsubsection{Data analysis}
 
-To extract the crtitical temperature of the phase transition, $T_c$, from the Monte Carlo
+To extract the critical temperature of the phase transition, $T_c$, from the Monte Carlo
 data one uses the so-called finite size scaling: one constructs the quantity which
 is scale invaritant at $T = T_c$, and fits the finite size MC data to the scaling
-Ansatz using critical exponents which are fixed by the univerality class.
-Because of computational complexity, the available systems sizes are rather small,
+Ansatz using critical exponents which are fixed by the universality class.
+Because of computational complexity, the available system sizes are rather small,
 and thus corrections to scaling are non-negligible and need to be accounted for
 in the fitting procedure. (see Sec 4 of Ref \cite{NJP:2006} for a detailed discussion).
 Specifically, for $|T - T_c| \ll T_c$, the scaling Ansatz can be written as
@@ -238,12 +238,12 @@ with full details of the data analysis. The main points are
 \begin{itemize}
 \item The best-fit value is $1/T_c = 4.39(5)$ which is consistent with the value
 $1/T_c = 4.41(5)$ from the original work (quoted in Fig.\ 4 of Ref.\ \cite{NJP:2006})
-within the combined errorbars.
+within the combined error bars.
 
 Note that the same data analysis with smaller MC statistics, made while
 simulations were still running, (available in the git history of \cite{GH:2020})
 gave a slightly different result, $1/T_c = 4.32(7)$, which is also consistent
-with the original result within the combined errorbars.
+with the original result within the combined error bars.
 
 
 \item Eq.\ \eqref{scaling} is a result of linearization, which is only valid
@@ -269,18 +269,18 @@ definitely entered by hand) or whether these text files were work-in-progress
 and final versions were lost, or if there is some other reason. Therefore,
 these text files should probably be disregarded: the main point of comparison
 is between the historic and today's results, and these two are consistent within
-the combined errorbars.
+the combined error bars.
 
 \begin{figure}
 \includegraphics[width=0.49\textwidth, keepaspectratio=True]{crossing_2.pdf}
 \includegraphics[width=0.47\textwidth, keepaspectratio=True]{crossing.pdf}
 %
 \caption{Left panel: Point: Results of MC simulations. Points are MC data with
-errorbars. Solid lines are linear fits to the datapoints. Red vertical line
+error bars. Solid lines are linear fits to the datapoints. Red vertical line
 shows the critical temperature, $1/T_c = 4.39(5)$ from the fitting procedure based
 on Eq.\ \eqref{scaling}. See the text for discussion.
  Right panel: Original data and analysis. Reproduced
-verbatim from Ref.\ \cite{PRL:2006}. Note that errorbars are $2\sigma$ on this
+verbatim from Ref.\ \cite{PRL:2006}. Note that error bars are $2\sigma$ on this
 panel.
 \label{fig:crossing}
 }
